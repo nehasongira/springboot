@@ -43,13 +43,11 @@ public class UserController {
         return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
     }
 
-    @PutMapping("/update/{trackId}")   public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId){       ResponseEntity responseEntity;
-        try {
-            responseEntity= new ResponseEntity<>(userService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
-        }
-        catch (Exception ex){
-            responseEntity = new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
-        }
+    @PutMapping("/update")   public ResponseEntity UpdateComments(@RequestBody User user)
+    {       ResponseEntity responseEntity;
+
+            responseEntity= new ResponseEntity<>(userService.UpdateComments(user.getId(),user.getComments()), HttpStatus.OK);
+
         return responseEntity;
     }
 //    @PutMapping("/users/{id}/{comment}")
