@@ -22,10 +22,21 @@ public class UserServiceImpl implements UserService {
         return savedUser;
     }
 
-
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
+
+    }
+
+//    @Override
+//    public void updateUser(int id, String comment) {
+//        userRepository.updateComment(id,comment);
+//    }
+
+
 }

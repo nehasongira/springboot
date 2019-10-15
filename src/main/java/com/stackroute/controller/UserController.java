@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/vl")
+@RequestMapping(value = "/api/vl")
 public class UserController {
     UserService userService;
     public UserController(UserService userService)
     {
         this.userService=userService;
     }
-    @PostMapping("user")
+    @PostMapping("users")
     public ResponseEntity<?> saveUser(@RequestBody User user)
     {
         ResponseEntity responseEntity;
@@ -30,10 +30,24 @@ public class UserController {
         return responseEntity;
 
     }
-    @GetMapping("user")
+    @GetMapping("users")
     public ResponseEntity<?> getAllUsers()
     {
         return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
     }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") int noteId)
+    {
+        userService.deleteUser(noteId);
+        return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
+    }
+//    @GetMapping("/users/{id}/{comment}")
+//    public ResponseEntity<?> updateUser(@PathVariable(value = "id") int noteId, @PathVariable(value = "comments") String userComment)
+//    {
+//        userService.updateUser(noteId,userComment);
+//        return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
+//    }
+
 
 }

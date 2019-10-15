@@ -2,35 +2,47 @@ package com.stackroute.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "music")
 public class User {
+    public User(int id, String name, String singer, String film, String comments) {
+        this.id = id;
+        Name = name;
+        this.singer = singer;
+        this.film = film;
+        this.comments = comments;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", FirstName='" + firstName + '\'' +
-                ", LastName='" + lastName + '\'' +
-                ", age=" + age +
+                ", Name='" + Name + '\'' +
+                ", singer='" + singer + '\'' +
+                ", film='" + film + '\'' +
+                ", comments='" + comments + '\'' +
                 '}';
     }
 
     @Id
-    int id;
-    String firstName;
-    String lastName;
-    int age;
+    private int id;
+    private String Name;
+    private String singer;
+    private String film;
 
-    public User() {
+    public String getComments() {
+        return comments;
     }
 
-    public User(int id, String firstName, String lastName, int age) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
+
+    private String comments;
+
+
 
     public int getId() {
         return id;
@@ -40,29 +52,36 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String firstName) {
-        firstName = firstName;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSinger() {
+        return singer;
     }
 
-    public void setLastName(String lastName) {
-        lastName = lastName;
+    public void setSinger(String singer) {
+        this.singer = singer;
     }
 
-    public int getAge() {
-        return age;
+    public String getFilm() {
+        return film;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setFilm(String film) {
+        this.film = film;
     }
+
+
+
+    public User() {
+    }
+
+
 
 
 }
