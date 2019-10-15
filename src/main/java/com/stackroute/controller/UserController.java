@@ -1,6 +1,7 @@
 package com.stackroute.controller;
 
 import com.stackroute.domain.User;
+import com.stackroute.exceptions.TrackNotFoundException;
 import com.stackroute.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,13 +44,8 @@ public class UserController {
         return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
     }
 
-    @PutMapping("/update/{trackId}")   public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId){       ResponseEntity responseEntity;
-        try {
-            responseEntity= new ResponseEntity<>(userService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
-        }
-        catch (Exception ex){
-            responseEntity = new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
-        }
+    @PutMapping("/update/{trackId}") public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId) throws TrackNotFoundException {       ResponseEntity responseEntity;
+        responseEntity= new ResponseEntity<>(userService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
         return responseEntity;
     }
     @GetMapping("/findName/{trackName}")
