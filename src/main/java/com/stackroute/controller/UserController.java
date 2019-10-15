@@ -52,6 +52,13 @@ public class UserController {
         }
         return responseEntity;
     }
+    @GetMapping("/findName/{trackName}")
+    public ResponseEntity findTitleByName(@PathVariable String trackName)
+    {
+        return  new ResponseEntity<>(
+                userService.findTitleByName(trackName),
+                HttpStatus.OK);
+    }
 //    @PutMapping("/users/{id}/{comment}")
 //    public ResponseEntity<?> updateUser(@PathVariable(value = "id") int noteId, @PathVariable(value = "comments") String userComment)
 //    {

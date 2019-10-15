@@ -9,5 +9,6 @@ public interface UserService {
     public List<User> getAllUsers();
     public void deleteUser(int id);
     public boolean UpdateComments(int trackId,String trackComments);
+    public List<User> findTitleByName(String trackName);
    // public void updateUser(int id,String comment);
 }

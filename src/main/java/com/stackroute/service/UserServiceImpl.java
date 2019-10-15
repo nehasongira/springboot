@@ -41,6 +41,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return true;
     }
+    @Override
+    public List<User> findTitleByName(String trackName) {
+        List<User> list= userRepository.findTitleByName(trackName);
+        return  list;
+    }
 //    @Override
 //    public void updateUser(int id, String comment) {
 //        userRepository.updateComment(id,comment);
