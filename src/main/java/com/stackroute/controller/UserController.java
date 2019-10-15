@@ -42,10 +42,21 @@ public class UserController {
         userService.deleteUser(noteId);
         return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
     }
-//    @GetMapping("/users/{id}/{comment}")
+
+    @PutMapping("/update/{trackId}")   public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId){       ResponseEntity responseEntity;
+        try {
+            responseEntity= new ResponseEntity<>(userService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
+        }
+        catch (Exception ex){
+            responseEntity = new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+        }
+        return responseEntity;
+    }
+//    @PutMapping("/users/{id}/{comment}")
 //    public ResponseEntity<?> updateUser(@PathVariable(value = "id") int noteId, @PathVariable(value = "comments") String userComment)
 //    {
 //        userService.updateUser(noteId,userComment);
+//
 //        return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
 //    }
 

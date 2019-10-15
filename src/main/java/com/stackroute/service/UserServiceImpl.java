@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -32,7 +34,13 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
 
     }
-
+    @Override
+    public boolean UpdateComments(int trackId,String trackComments) {
+        User user = userRepository.getOne(trackId);
+        user.setComments(trackComments);
+        userRepository.save(user);
+        return true;
+    }
 //    @Override
 //    public void updateUser(int id, String comment) {
 //        userRepository.updateComment(id,comment);

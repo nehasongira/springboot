@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User ,Integer> {
 //    @Modifying
-//    @Query("UPDATE music m SET m.comments = :comment WHERE m.id = :idByUser")
-//    Void updateComment(@Param("idByUser") int userId, @Param("comment") String comment1);
+//    @Query("UPDATE music m SET m.comments = :comment WHERE m.id = :id")
+//    Void updateComment(@Param("id") int userId, @Param("comment") String comment1);
 }

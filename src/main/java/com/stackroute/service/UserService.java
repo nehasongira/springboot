@@ -8,5 +8,6 @@ public interface UserService {
     public User saveUser(User user);
     public List<User> getAllUsers();
     public void deleteUser(int id);
+    public boolean UpdateComments(int trackId,String trackComments);
    // public void updateUser(int id,String comment);
 }
