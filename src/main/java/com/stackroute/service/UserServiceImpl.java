@@ -1,6 +1,7 @@
 package com.stackroute.service;
 
 import com.stackroute.domain.User;
+import com.stackroute.exceptions.TrackAlreadyExistsException;
 import com.stackroute.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public User saveUser(User user) throws TrackAlreadyExistsException {
+       if(userRepository.existsById(user.getId()))
+       {
+           throw new TrackAlreadyExistsException("track already exist");
+       }
         User savedUser= (User) userRepository.save(user);
-
+        if(savedUser==null)
+        {
+            throw new TrackAlreadyExistsException("user already exist");
+        }
         return savedUser;
     }
 
