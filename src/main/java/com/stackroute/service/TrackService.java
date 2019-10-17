@@ -6,7 +6,7 @@ import com.stackroute.exceptions.TrackNotFoundException;
 
 import java.util.List;
 
-public interface UserService {
+public interface TrackService {
     public User saveUser(User user) throws  TrackAlreadyExistsException;
     public List<User> getAllUsers();
     public void deleteUser(int id) ;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User ,Integer> {
+public interface TrackRepository extends JpaRepository<User ,Integer> {
     @Query(value = "SELECT m FROM User m where m.Name = :name")
     List<User> findTitleByName(@Param("name") String name);
 

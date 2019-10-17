@@ -3,7 +3,7 @@ package com.stackroute.controller;
 import com.stackroute.domain.User;
 import com.stackroute.exceptions.TrackAlreadyExistsException;
 import com.stackroute.exceptions.TrackNotFoundException;
-import com.stackroute.service.UserService;
+import com.stackroute.service.TrackService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,18 +12,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/vl")
-public class UserController {
-    UserService userService;
-    public UserController(UserService userService)
+public class TrackController {
+    TrackService trackService;
+    public TrackController(TrackService trackService)
     {
-        this.userService=userService;
+        this.trackService = trackService;
     }
     @PostMapping("users")
     public ResponseEntity<?> saveUser(@RequestBody User user)
     {
         ResponseEntity responseEntity;
         try{
-            userService.saveUser(user);
+            trackService.saveUser(user);
             responseEntity=new ResponseEntity<String>("successfully", HttpStatus.CREATED);
         }catch (TrackAlreadyExistsException e)
         {
@@ -35,19 +35,19 @@ public class UserController {
     @GetMapping("users")
     public ResponseEntity<?> getAllUsers()
     {
-        return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
+        return new ResponseEntity<List<User>>(trackService.getAllUsers(),HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") int noteId)
     {
-        userService.deleteUser(noteId);
-        return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
+        trackService.deleteUser(noteId);
+        return new ResponseEntity<List<User>>(trackService.getAllUsers(),HttpStatus.OK);
     }
 
     @PutMapping("/update/{trackId}") public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId)
     {       ResponseEntity responseEntity;
-        responseEntity= new ResponseEntity<>(userService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
+        responseEntity= new ResponseEntity<>(trackService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
         return responseEntity;
     }
     @GetMapping("/findName/{trackName}")
@@ -55,7 +55,7 @@ public class UserController {
     {
         ResponseEntity responseEntity;
         try{
-            responseEntity = new ResponseEntity<>((userService.findTitleByName(trackName)), HttpStatus.OK);
+            responseEntity = new ResponseEntity<>((trackService.findTitleByName(trackName)), HttpStatus.OK);
         }catch (TrackNotFoundException e){
             responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }

@@ -1,11 +1,9 @@
 package com.stackroute.component;
 
 import com.stackroute.domain.User;
-import com.stackroute.repository.UserRepository;
+import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 
@@ -17,16 +15,16 @@ import org.springframework.stereotype.Component;
 //   private Environment env;
 //
 //    private String mysqlUrl1 = env.getProperty("in.name");
-        private UserRepository userRepository;
+        private TrackRepository trackRepository;
 
         @Autowired
-        public void setUserRepository(UserRepository userRepository) {
-            this.userRepository = userRepository;
+        public void setTrackRepository(TrackRepository trackRepository) {
+            this.trackRepository = trackRepository;
         }
 
         @Override
         public void run(String... args) throws Exception {
-            userRepository.save(new User(3, "lag ja gale", "lata mangeshkar", "Woh Kaun Thi?", "awesome"));
+            trackRepository.save(new User(3, "lag ja gale", "lata mangeshkar", "Woh Kaun Thi?", "awesome"));
 
         }
     }

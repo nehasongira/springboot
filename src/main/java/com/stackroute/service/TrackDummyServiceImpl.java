@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@Profile("dummy")
-public class TrackDummyServiceImpl implements UserService {
+@Profile("dev")
+public class TrackDummyServiceImpl implements TrackService {
 
     @Override
     public User saveUser(User user) throws TrackAlreadyExistsException {
