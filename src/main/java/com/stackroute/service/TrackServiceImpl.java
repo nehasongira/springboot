@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 //@Primary
@@ -48,12 +49,12 @@ public class TrackServiceImpl implements TrackService {
 
     }
     @Override
-    public boolean UpdateComments(int trackId,String trackComments){
-        User user = trackRepository.getOne(trackId);
-        user.setComments(trackComments);
+    public String UpdateComments(User user){
+        if(!(trackRepository.findById(user.getId()).isPresent())) {
         trackRepository.save(user);
-        return true;
-    }
+
+        }
+    return "Updated successfully" ;}
     @Override
     public List<User> findTitleByName(String trackName) throws TrackNotFoundException{
         List<User> list= trackRepository.findTitleByName(trackName);

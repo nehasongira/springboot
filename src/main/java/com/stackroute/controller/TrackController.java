@@ -4,12 +4,13 @@ import com.stackroute.domain.User;
 import com.stackroute.exceptions.TrackAlreadyExistsException;
 import com.stackroute.exceptions.TrackNotFoundException;
 import com.stackroute.service.TrackService;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@PropertySource("classpath:application-mongo.properties")
 @RestController
 @RequestMapping(value = "/api/vl")
 public class TrackController {
@@ -45,9 +46,9 @@ public class TrackController {
         return new ResponseEntity<List<User>>(trackService.getAllUsers(),HttpStatus.OK);
     }
 
-    @PutMapping("/update/{trackId}") public ResponseEntity UpdateComments(@RequestBody String trackcomments,int trackId)
+    @PutMapping("/update/") public ResponseEntity UpdateComments(@RequestBody User user)
     {       ResponseEntity responseEntity;
-        responseEntity= new ResponseEntity<>(trackService.UpdateComments(trackId,trackcomments), HttpStatus.OK);
+        responseEntity= new ResponseEntity<>(trackService.UpdateComments(user), HttpStatus.OK);
         return responseEntity;
     }
     @GetMapping("/findName/{trackName}")

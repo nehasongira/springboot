@@ -3,13 +3,14 @@ import com.stackroute.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface TrackRepository extends JpaRepository<User ,Integer> {
+public interface TrackRepository extends MongoRepository<User ,Integer> {
     @Query(value = "SELECT m FROM User m where m.Name = :name")
     List<User> findTitleByName(@Param("name") String name);
 

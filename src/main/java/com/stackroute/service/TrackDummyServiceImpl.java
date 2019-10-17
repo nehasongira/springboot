@@ -29,10 +29,10 @@ public class TrackDummyServiceImpl implements TrackService {
     }
 
     @Override
-    public boolean UpdateComments(int trackId, String trackComments) {
-        System.out.println("updatecreated");
-        return false;
+    public String UpdateComments(User user) {
+        return null;
     }
+
 
     @Override
     public List<User> findTitleByName(String trackName) {

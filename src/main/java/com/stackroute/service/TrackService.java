@@ -10,7 +10,7 @@ public interface TrackService {
     public User saveUser(User user) throws  TrackAlreadyExistsException;
     public List<User> getAllUsers();
     public void deleteUser(int id) ;
-    public boolean UpdateComments(int trackId,String trackComments) ;
+    public String UpdateComments(User user) ;
     public List<User> findTitleByName(String trackName) throws TrackNotFoundException;
    // public void updateUser(int id,String comment);
 }
