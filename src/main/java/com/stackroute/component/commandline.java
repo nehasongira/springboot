@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 //    @Autowired
 //   private Environment env;
 //
-//    String mysqlUrl1 = env.getProperty("in.name");
+//    private String mysqlUrl1 = env.getProperty("in.name");
         private UserRepository userRepository;
 
         @Autowired
@@ -27,6 +27,6 @@ import org.springframework.stereotype.Component;
         @Override
         public void run(String... args) throws Exception {
             userRepository.save(new User(3, "lag ja gale", "lata mangeshkar", "Woh Kaun Thi?", "awesome"));
-            //System.out.println(mysqlUrl1);
+
         }
     }
