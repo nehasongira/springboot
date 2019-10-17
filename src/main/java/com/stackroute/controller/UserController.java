@@ -53,9 +53,13 @@ public class UserController {
     @GetMapping("/findName/{trackName}")
     public ResponseEntity findTitleByName(@PathVariable String trackName)
     {
-        return  new ResponseEntity<>(
-                userService.findTitleByName(trackName),
-                HttpStatus.OK);
+        ResponseEntity responseEntity;
+        try{
+            responseEntity = new ResponseEntity<>((userService.findTitleByName(trackName)), HttpStatus.OK);
+        }catch (TrackNotFoundException e){
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 //    @PutMapping("/users/{id}/{comment}")
 //    public ResponseEntity<?> updateUser(@PathVariable(value = "id") int noteId, @PathVariable(value = "comments") String userComment)

@@ -12,26 +12,31 @@ public class TrackDummyServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) throws TrackAlreadyExistsException {
+        System.out.println("savecreated");
         return null;
     }
 
     @Override
     public List<User> getAllUsers() {
+        System.out.println("getallcreated");
         return null;
     }
 
     @Override
     public void deleteUser(int id) {
+        System.out.println("deletecreated");
 
     }
 
     @Override
     public boolean UpdateComments(int trackId, String trackComments) {
+        System.out.println("updatecreated");
         return false;
     }
 
     @Override
     public List<User> findTitleByName(String trackName) {
+        System.out.println("searchcreated");
         return null;
     }
 }
