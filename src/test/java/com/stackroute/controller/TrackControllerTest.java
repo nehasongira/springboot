@@ -50,10 +50,11 @@ public class TrackControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(trackController).build();
         user = new User();
         user.setId(26);
-        user.setName("Jonny");
+
         user.setSinger("Jenny");
         user.setFilm("Jonny123");
         user.setComments("Jonny123");
+        user.setName("Jonny");
         list = new ArrayList();
         list.add(user);
     }
@@ -61,7 +62,7 @@ public class TrackControllerTest {
     @Test
     public void saveUser() throws Exception {
         when(trackService.saveUser(any())).thenReturn(user);
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/vl/users")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andDo(MockMvcResultHandlers.print());
@@ -71,16 +72,16 @@ public class TrackControllerTest {
     @Test
     public void saveUserFailure() throws Exception {
         when(trackService.saveUser(any())).thenThrow(TrackAlreadyExistsException.class);
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/vl/users")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
                 .andExpect(MockMvcResultMatchers.status().isConflict())
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    public void getAllUser() throws Exception {
+    public void getAllUsers() throws Exception {
         when(trackService.getAllUsers()).thenReturn(list);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/users")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/vl/users")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
