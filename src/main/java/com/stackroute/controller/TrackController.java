@@ -28,7 +28,7 @@ public class TrackController {
             responseEntity=new ResponseEntity<String>("successfully", HttpStatus.CREATED);
         }catch (TrackAlreadyExistsException e)
         {
-            responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CREATED);
+            responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
         }
         return responseEntity;
 
